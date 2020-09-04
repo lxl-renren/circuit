@@ -1,15 +1,12 @@
-package com.circuit.circuitbreaker;
+package com.circuit.circuitbreaker.breaker;
 
-import java.util.LinkedList;
-import java.util.Queue;
 import java.util.Timer;
 import java.util.TimerTask;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
-import java.util.concurrent.atomic.AtomicInteger;
 
+import com.circuit.circuitbreaker.breakpolicy.CircuitBreakerPolicy;
+import com.circuit.circuitbreaker.breakpolicy.DefaultCircuitBreakerPolicy;
+import com.circuit.circuitbreaker.openpolicy.CircuitOpenPolicy;
 import lombok.*;
 
 @Getter

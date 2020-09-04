@@ -1,14 +1,18 @@
-package com.circuit.circuitbreaker;
+package com.circuit.circuitbreaker.breaker;
 
 
 import java.util.concurrent.*;
 
 public class CircuitBreakRunner {
-    public static <V> V run(CircuitBreaker circuitBreaker, Callable<V> callable) {
+//    public static <V> V run(CircuitBreaker circuitBreaker, Callable<V> callable) {
+//        return run(circuitBreaker, callable, circuitBreaker.getCircuitBreakerConfig().getCircuitBreakerFallback());
+//    }
+
+    public static <V> V run(CircuitBreaker circuitBreaker, Callable<V> callable, CircuitBreakerFallback fallback) {
         CircuitBreakerConfig config = circuitBreaker.getCircuitBreakerConfig();
         if (circuitBreaker.isOpened()) {
-            System.out.println("invoked is opened");
-            return (V) config.getCircuitBreakerFallback().run();
+            System.out.println("circuit breaker is opened");
+            return (V) fallback.run();
         }
 
         Future<V> future = config.getExecutor().submit(callable);
@@ -19,7 +23,7 @@ public class CircuitBreakRunner {
         } catch (InterruptedException | ExecutionException | TimeoutException e) {
             //e.printStackTrace();
             circuitBreaker.accFailed();
-            return (V) config.getCircuitBreakerFallback().run();
+            return (V) fallback.run();
         }
     }
 }

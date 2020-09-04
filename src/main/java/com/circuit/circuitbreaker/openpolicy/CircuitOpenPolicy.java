@@ -1,4 +1,4 @@
-package com.circuit.circuitbreaker;
+package com.circuit.circuitbreaker.openpolicy;
 
 public interface CircuitOpenPolicy {
     boolean isOpened();

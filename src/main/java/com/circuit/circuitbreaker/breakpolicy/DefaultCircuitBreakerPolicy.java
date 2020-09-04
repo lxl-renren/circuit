@@ -1,10 +1,9 @@
-package com.circuit.circuitbreaker;
+package com.circuit.circuitbreaker.breakpolicy;
 
 import java.util.LinkedList;
 import java.util.Queue;
-import java.util.concurrent.atomic.AtomicInteger;
 
-public class DefaultCircuitBreakerPolicy implements  CircuitBreakerPolicy {
+public class DefaultCircuitBreakerPolicy implements CircuitBreakerPolicy {
     private int failCount;
     private Queue<Boolean> window;
     private int fallThr = 10;
@@ -40,6 +39,6 @@ public class DefaultCircuitBreakerPolicy implements  CircuitBreakerPolicy {
             if (!front)
                 failCount--;
         }
-        System.out.println(failCount + " " + result + " " + front);
+        //System.out.println(failCount + " " + result + " " + front);
     }
 }

@@ -1,4 +1,4 @@
-package com.circuit.circuitbreaker;
+package com.circuit.circuitbreaker.breaker;
 
 import lombok.Data;
 import lombok.Getter;
@@ -12,14 +12,18 @@ import java.util.concurrent.TimeUnit;
 @Data
 @Setter
 public class CircuitBreakerConfig {
-    private CircuitBreakerFallback circuitBreakerFallback;
+    //private CircuitBreakerFallback circuitBreakerFallback;
     private int threadCount = 12;
     private ExecutorService executor;
     private long timeout = 1000;
     private TimeUnit timeUnit = TimeUnit.MILLISECONDS;
 
-    public  CircuitBreakerConfig(CircuitBreakerFallback circuitBreakerFallback) {
-        this.circuitBreakerFallback = circuitBreakerFallback;
+    public  CircuitBreakerConfig() {
         executor = Executors.newFixedThreadPool(threadCount);
     }
+
+//    public  CircuitBreakerConfig(CircuitBreakerFallback circuitBreakerFallback) {
+//        this.circuitBreakerFallback = circuitBreakerFallback;
+//        executor = Executors.newFixedThreadPool(threadCount);
+//    }
 }
